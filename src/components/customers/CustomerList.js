@@ -4,26 +4,41 @@ import './Customers.css'
 
 
 export const CustomerList = () => {
-    const [customers, assignCustomers] = useState([]) //useState returns an array and a function [customers is the array, assignCustomers or setCustomers is the function]
+    const [customers, setCustomers] = useState([]) //useState returns an array and a function [customers is the array, assignCustomers or setCustomers is the function]
+    const [totalCustomerMessage, updateMessage] = useState("")
 
     useEffect(   // useEffect is like an Event Listener. It runs the code when the state changes
         () => {
+            console.log("Intitial useEffect")
             fetch("http://localhost:8088/customers")
             .then(res => res.json())
             .then((customerArray) => {
-                assignCustomers(customerArray)
+                setCustomers(customerArray)
             })
         },
         []
     )
+
+    useEffect(
+        () => {
+            console.log("Customers state changed", customers)
+            if (customers.length === 1) {
+                updateMessage("You have 1 customer")
+            } else {
+                updateMessage(`You have ${customers.length} customers`)
+            }
+        },
+        [customers]
+    )
     
     return (
         <>
-        <h1 className="customersHeading">Customers</h1>
+            <div>{ totalCustomerMessage }</div>
+            <h1 className="customersHeading">Customers</h1>
         {
-            customers.map(
+            customers.slice(0, 5).map(
                  (customerObject) => {
-                    return <h2 key={`customer--${customerObject.id}`} >{customerObject.name}</h2>
+                    return <p key={`customer--${customerObject.id}`} >{customerObject.name}</p>
                  }
             )
         }

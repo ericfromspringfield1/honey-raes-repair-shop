@@ -1,32 +1,36 @@
-import React, {useEffect, useState } from 'react';
-import './Employees.css'
-
-
+import React, { useEffect, useState } from "react"
 
 export const EmployeeList = () => {
-    const [employees, assignEmployees] = useState([]) //useState returns an array and a function [employees is the array, assignEmployees or setEmployees is the function]
-
-    useEffect(   // useEffect is like an Event Listener. It runs the code when the state changes
+    const [employees, changeEmployee] = useState([])
+    const [specialties, setSpecial] = useState("")
+    useEffect(
         () => {
             fetch("http://localhost:8088/employees")
-            .then(res => res.json())
-            .then((employeeArray) => {
-                assignEmployees(employeeArray)
-            })
+                .then(res => res.json())
+                .then((data) => {
+                    changeEmployee(data)
+                })
         },
         []
     )
-    
+
+    useEffect(() => {
+        const justSpecialities = employees.map(employee => employee.specialty)
+        setSpecial(justSpecialities.join(", "))
+    }, [employees])
+
     return (
         <>
-        <h1 className="employeesHeading">Employees</h1>
-        {
-            employees.map(
-                 (employeeObject) => {
-                    return <h2 key={`customer--${employeeObject.id}`} >{employeeObject.name}</h2>
-                 }
-            )
-        }
+            <div>
+                Specialties: { specialties }
+            </div>
+            {
+                employees.map(
+                    (employee) => {
+                        return <p key={`employee--${employee.id}`}>{employee.name}</p>
+                    }
+                )
+            }
         </>
     )
 }
