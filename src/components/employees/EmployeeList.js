@@ -3,20 +3,21 @@ import React, { useEffect, useState } from "react"
 export const EmployeeList = () => {
     const [employees, changeEmployee] = useState([])
     const [specialties, setSpecial] = useState("")
+
     useEffect(
         () => {
-            fetch("http://localhost:8088/employees")
+            fetch("http://localhost:8081/employees")
+            // fetch("http://localhost:8088/employees")
                 .then(res => res.json())
                 .then((data) => {
                     changeEmployee(data)
-                })
-        },
-        []
-    )
+                })},[])
 
     useEffect(() => {
         const justSpecialities = employees.map(employee => employee.specialty)
         setSpecial(justSpecialities.join(", "))
+        console.log('justSpecialties state has done changed up in hurrr')
+
     }, [employees])
 
     return (
