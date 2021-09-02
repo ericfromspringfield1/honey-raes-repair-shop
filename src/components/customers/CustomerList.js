@@ -10,7 +10,8 @@ export const CustomerList = () => {
     useEffect(   // useEffect is like an Event Listener. It runs the code when the state changes
         () => {
             console.log("Intitial useEffect")
-            fetch("http://localhost:8088/customers")
+            // fetch("http://localhost:8088/customers")
+            fetch("http://localhost:8081/customers")
             .then(res => res.json())
             .then((customerArray) => {
                 setCustomers(customerArray)
