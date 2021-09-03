@@ -1,7 +1,6 @@
 import React from 'react';
-import { CustomerList } from './customers/CustomerList'
-import { EmployeeList } from './employees/EmployeeList';
-import { TicketList } from './tickets/TicketList';
+import { NavBar } from "./nav/NavBar";
+import { ApplicationViews } from './ApplicationViews';
 
 
 
@@ -9,10 +8,10 @@ export const Repairs = () => {
 
     return (
         <>
+            <NavBar />
             <h1>Honey Rae's Repair Shop</h1>
-            <CustomerList />
-            <EmployeeList />
-            <TicketList />
+
+            <ApplicationViews />
         </>
     )
 }
