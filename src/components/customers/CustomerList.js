@@ -10,8 +10,7 @@ export const CustomerList = () => {
     useEffect(   // useEffect is like an Event Listener. It runs the code when the state changes
         () => {
             console.log("Intitial useEffect")
-            // fetch("http://localhost:8088/customers")
-            fetch("http://localhost:8081/customers")
+            fetch("http://localhost:8088/customers")
             .then(res => res.json())
             .then((customerArray) => {
                 setCustomers(customerArray)
@@ -36,6 +35,7 @@ export const CustomerList = () => {
         <>
             <div>{ totalCustomerMessage }</div>
             <h1 className="customersHeading">Customers</h1>
+            <img src="https://cdn.ttgtmedia.com/visuals/ComputerWeekly/Hero%20Images/Customer-concept-Fotolia.jpg" />
         {
             customers.slice(0, 5).map(
                  (customerObject) => {

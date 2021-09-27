@@ -6,7 +6,7 @@ export const EmployeeList = () => {
 
     useEffect(
         () => {
-            fetch("http://localhost:8081/employees")
+            fetch("http://localhost:8088/employees")
             // fetch("http://localhost:8088/employees")
                 .then(res => res.json())
                 .then((data) => {
