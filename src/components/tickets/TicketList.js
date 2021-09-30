@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { getTickets } from "../APIManager";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./Tickets.css";
@@ -9,14 +10,12 @@ export const TicketList = () => {
   const history = useHistory();
 
   useEffect(() => {
-    fetch(
-      "http://localhost:8088/serviceTickets?_expand=employee&_expand=customer"
-    )
-      .then((res) => res.json())
+    getTickets()
+
       .then((data) => {
         updateTickets(data);
       });
-  }, []);
+  }, [])
 
   useEffect(() => {
     const activeTicketCount = tickets.filter(
@@ -24,7 +23,7 @@ export const TicketList = () => {
     ).length;
     setActive(`There are ${activeTicketCount} open tickets`);
   }, [tickets]);
-
+  
   const deleteTicket = (id) => {
     fetch(`http://localhost:8088/serviceTickets/${id}`, {
       method: "DELETE",

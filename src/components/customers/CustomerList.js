@@ -1,6 +1,6 @@
 import React, {useEffect, useState } from 'react';
 import './Customers.css'
-import { getAllCustomers } from "../ApiManager"
+import { getAllCustomers } from "../APIManager"
 
 
 
