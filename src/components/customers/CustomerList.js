@@ -1,5 +1,6 @@
 import React, {useEffect, useState } from 'react';
 import './Customers.css'
+import { getAllCustomers } from "../APIManager"
 
 
 
@@ -9,10 +10,7 @@ export const CustomerList = () => {
 
     useEffect(   // useEffect is like an Event Listener. It runs the code when the state changes
         () => {
-            console.log("Intitial useEffect")
-            // fetch("http://localhost:8088/customers")
-            fetch("http://localhost:8081/customers")
-            .then(res => res.json())
+            getAllCustomers()
             .then((customerArray) => {
                 setCustomers(customerArray)
             })
