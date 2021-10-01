@@ -7,6 +7,8 @@ import { TicketList } from "./tickets/TicketList"
 import { TicketForm } from "./tickets/TicketForm"
 import { Ticket } from "./tickets/Ticket"
 import { EmployeeForm } from "./employees/EmployeeForm"
+import Search from "./search/Search"
+
 
 export const ApplicationViews = () => {
     return (
@@ -42,6 +44,14 @@ export const ApplicationViews = () => {
         <Route exact path="/employees/create">
             <EmployeeForm />
         </Route>
+
+        <Route exact path="/search">
+            <Search />
+        </Route>
+
+        
         </>
+
+        
     )
 }
